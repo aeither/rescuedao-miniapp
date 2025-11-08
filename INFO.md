@@ -5,6 +5,7 @@ yarn
 yarn account:import
 
 yarn deploy --network baseSepolia
+yarn deploy --network baseSepolia --tags SimpleConfidentialNFT
 
 ## CCIP Contracts for crosschain donation
 
