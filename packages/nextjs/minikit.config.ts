@@ -4,6 +4,11 @@ const ROOT_URL =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000");
 
+const NEYNAR_APP_ID = process.env.NEXT_PUBLIC_NEYNAR_APP_ID;
+
+// Use Neynar webhook if app ID is configured, otherwise use custom webhook
+const webhookUrl = NEYNAR_APP_ID ? `https://api.neynar.com/f/app/${NEYNAR_APP_ID}/event` : `${ROOT_URL}/api/webhook`;
+
 /**
  * MiniApp configuration object. Must follow the Farcaster MiniApp specification.
  *
@@ -25,14 +30,13 @@ export const minikitConfig = {
     splashImageUrl: `${ROOT_URL}/blue-hero.png`,
     splashBackgroundColor: "#011623",
     homeUrl: ROOT_URL,
-    webhookUrl: `${ROOT_URL}/api/webhook`,
+    webhookUrl,
     primaryCategory: "social",
     tags: ["fhenix", "fhe", "encryption", "privacy", "defi"],
     heroImageUrl: `${ROOT_URL}/blue-hero.png`,
     tagline: "Privacy onchain",
     ogTitle: "Fhenix MiniApp Demo",
-    ogDescription:
-      "Experience confidential computing powered by Fully Homomorphic Encryption",
+    ogDescription: "Experience confidential computing powered by Fully Homomorphic Encryption",
     ogImageUrl: `${ROOT_URL}/blue-hero.png`,
   },
 } as const;

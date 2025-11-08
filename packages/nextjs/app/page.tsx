@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { FHECounterComponent } from "./FHECounterComponent";
 import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import type { NextPage } from "next";
@@ -67,6 +68,34 @@ const Home: NextPage = () => {
         <div className="grow bg-base-300 w-full mt-16 px-8 py-12">
           <div className="flex justify-center items-center gap-12 flex-col md:flex-row">
             <FHECounterComponent />
+          </div>
+
+          {/* Mini App Features */}
+          <div className="mt-12 max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-6">Mini App Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link href="/profile" className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-lg">👤 Profile</h3>
+                  <p className="text-sm opacity-70">View your Farcaster profile and connect your wallet</p>
+                </div>
+              </Link>
+              <Link href="/notification" className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-lg">🔔 Notifications</h3>
+                  <p className="text-sm opacity-70">Enable notifications and test notification features</p>
+                </div>
+              </Link>
+              <Link
+                href={context?.user?.username ? `/share/${context.user.username}` : "/share/demo"}
+                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+              >
+                <div className="card-body">
+                  <h3 className="card-title text-lg">🚀 Share</h3>
+                  <p className="text-sm opacity-70">Share this Mini App with your Farcaster network</p>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -24,6 +24,16 @@ if (isIpfs) {
   nextConfig.images = {
     unoptimized: true,
   };
+} else {
+  // Configure remote image patterns for Farcaster profile pictures
+  nextConfig.images = {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  };
 }
 
 module.exports = nextConfig;
