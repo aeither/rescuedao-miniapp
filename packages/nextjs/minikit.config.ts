@@ -16,9 +16,10 @@ const webhookUrl = NEYNAR_APP_ID ? `https://api.neynar.com/f/app/${NEYNAR_APP_ID
  */
 export const minikitConfig = {
   accountAssociation: {
-    header: "",
-    payload: "",
-    signature: "",
+    header:
+      "eyJmaWQiOjIxNjM4MywidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDIxNEQxNzJDMERjNjBmQTUxNERmOTU0QTgyOGJjQzU1MkJlMzA4MTUifQ",
+    payload: "eyJkb21haW4iOiJyZXNjdWVkYW8tbWluaWFwcC1uZXh0anMudmVyY2VsLmFwcCJ9",
+    signature: "E6fHjZCyHSM+QjHJitLp9HSD0K3fwAw2cMxy8NzRfZ4j03u2Nn+3lthBnDxlGASFAvafzBKoeJbcLqZq6Tq7bRs=",
   },
   miniapp: {
     version: "1",
