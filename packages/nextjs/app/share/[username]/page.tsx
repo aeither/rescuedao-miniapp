@@ -11,19 +11,26 @@ export async function generateMetadata({ params }: SharePageProps): Promise<Meta
   try {
     const { username } = await params;
 
+    // Determine the base URL with proper fallbacks
+    const baseUrl =
+      process.env.NEXT_PUBLIC_URL ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null) ||
+      minikitConfig.miniapp.homeUrl;
+
     return {
       title: minikitConfig.miniapp.name,
       description: minikitConfig.miniapp.description,
       other: {
         "fc:miniapp": JSON.stringify({
           version: minikitConfig.miniapp.version,
-          imageUrl: `${minikitConfig.miniapp.homeUrl}/api/og/${username}`,
+          imageUrl: `${baseUrl}/api/og/${username}`,
           button: {
             title: `Launch ${minikitConfig.miniapp.name}`,
             action: {
               name: `Launch ${minikitConfig.miniapp.name}`,
               type: "launch_frame",
-              url: `${minikitConfig.miniapp.homeUrl}`,
+              url: baseUrl,
             },
           },
         }),

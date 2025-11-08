@@ -1,8 +1,8 @@
 const ROOT_URL =
   process.env.NEXT_PUBLIC_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null) ||
+  "http://localhost:3000";
 
 const NEYNAR_APP_ID = process.env.NEXT_PUBLIC_NEYNAR_APP_ID;
 

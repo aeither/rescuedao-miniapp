@@ -1,3 +1,5 @@
+## deploy contract
+
 yarn
 
 yarn account:import
@@ -16,3 +18,7 @@ curl -X POST http://localhost:3000/api/notifications/send \
       "target_url": "https://rescuedao-miniapp-nextjs.vercel.app/"
     }
   }'
+
+## features
+
+miniapp: base connect, share, profile, notification, 
