@@ -6,6 +6,14 @@ yarn account:import
 
 yarn deploy --network baseSepolia
 
+## CCIP Contracts for crosschain donation
+
+https://github.com/aeither/ccip-starter-kit-foundry
+
+## domain 
+
+https://rescuedao-miniapp-nextjs.vercel.app/
+
 ## notification
 
 curl -X POST http://localhost:3000/api/notifications/send \
