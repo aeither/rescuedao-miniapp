@@ -3,25 +3,25 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { sdk } from "@farcaster/miniapp-sdk";
-import { useMiniApp } from "@neynar/react";
 import type { NextPage } from "next";
 import { BellIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 const NotificationPage: NextPage = () => {
-  const { isSDKLoaded } = useMiniApp();
   const [notificationStatus, setNotificationStatus] = useState<{
     enabled: boolean;
     token?: string;
     message?: string;
   }>({ enabled: false });
   const [isLoading, setIsLoading] = useState(false);
+  const [isSDKReady, setIsSDKReady] = useState(false);
 
   useEffect(() => {
     sdk.actions.ready();
+    setIsSDKReady(true);
   }, []);
 
   const handleAddMiniApp = async () => {
-    if (!isSDKLoaded) {
+    if (!isSDKReady) {
       setNotificationStatus({
         enabled: false,
         message: "SDK not loaded yet. Please wait...",
@@ -113,12 +113,12 @@ const NotificationPage: NextPage = () => {
             <button
               className={`btn btn-primary ${isLoading ? "loading" : ""}`}
               onClick={handleAddMiniApp}
-              disabled={!isSDKLoaded || isLoading}
+              disabled={!isSDKReady || isLoading}
             >
               {isLoading ? "Adding..." : "Add Mini App & Enable Notifications"}
             </button>
 
-            <div className="text-sm opacity-70 mt-2">{!isSDKLoaded && "⏳ Waiting for SDK to load..."}</div>
+            <div className="text-sm opacity-70 mt-2">{!isSDKReady && "⏳ Waiting for SDK to load..."}</div>
           </div>
         </div>
 
@@ -247,5 +247,7 @@ const NotificationPage: NextPage = () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default NotificationPage;
