@@ -82,6 +82,7 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
               display: "modal",
               preference: "eoaOnly",
             },
+            paymaster: process.env.NEXT_PUBLIC_PAYMASTER_URL,
           }}
           miniKit={{
             enabled: true,

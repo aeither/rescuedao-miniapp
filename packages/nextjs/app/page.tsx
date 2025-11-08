@@ -83,7 +83,7 @@ const Home: NextPage = () => {
           {/* Mini App Features */}
           <div className="mt-12 max-w-5xl mx-auto">
             <h2 className="text-2xl font-bold text-center mb-6">Mini App Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link href="/profile" className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
                 <div className="card-body">
                   <h3 className="card-title text-lg">👤 Profile</h3>
@@ -94,6 +94,12 @@ const Home: NextPage = () => {
                 <div className="card-body">
                   <h3 className="card-title text-lg">🔔 Notifications</h3>
                   <p className="text-sm opacity-70">Enable notifications and test notification features</p>
+                </div>
+              </Link>
+              <Link href="/sponsored-tx" className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-lg">⛽ Sponsored TX</h3>
+                  <p className="text-sm opacity-70">Test gasless transactions with Base Account</p>
                 </div>
               </Link>
               <button
