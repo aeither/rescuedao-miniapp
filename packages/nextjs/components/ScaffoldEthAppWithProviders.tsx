@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { OnchainKitProvider } from "@coinbase/onchainkit";
+import "@coinbase/onchainkit/styles.css";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { useTheme } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import { WagmiProvider } from "wagmi";
+import { baseSepolia } from "wagmi/chains";
 import { useConnectCofheClient } from "~~/app/useCofhe";
 import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
@@ -68,13 +71,32 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <ProgressBar height="3px" color="#2299dd" />
-        <RainbowKitProvider
-          avatar={BlockieAvatar}
-          theme={mounted ? (isDarkMode ? darkTheme() : lightTheme()) : lightTheme()}
+        <OnchainKitProvider
+          chain={baseSepolia}
+          apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
+          config={{
+            appearance: {
+              mode: isDarkMode ? "dark" : "light",
+            },
+            wallet: {
+              display: "modal",
+              preference: "eoaOnly",
+            },
+          }}
+          miniKit={{
+            enabled: true,
+            autoConnect: true,
+            notificationProxyUrl: undefined,
+          }}
         >
-          <ScaffoldEthApp>{children}</ScaffoldEthApp>
-        </RainbowKitProvider>
+          <ProgressBar height="3px" color="#2299dd" />
+          <RainbowKitProvider
+            avatar={BlockieAvatar}
+            theme={mounted ? (isDarkMode ? darkTheme() : lightTheme()) : lightTheme()}
+          >
+            <ScaffoldEthApp>{children}</ScaffoldEthApp>
+          </RainbowKitProvider>
+        </OnchainKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

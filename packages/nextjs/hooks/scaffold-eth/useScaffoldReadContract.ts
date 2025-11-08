@@ -40,12 +40,7 @@ export const useScaffoldReadContract = <
   const { query: queryOptions, watch, ...readContractConfig } = readConfig;
   // set watch to true by default
   const defaultWatch = watch ?? true;
-  const readContractHookRes: Omit<ReturnType<typeof useReadContract>, "data" | "refetch"> & {
-    data: AbiFunctionReturnType<ContractAbi, TFunctionName> | undefined;
-    refetch: (
-      options?: RefetchOptions | undefined,
-    ) => Promise<QueryObserverResult<AbiFunctionReturnType<ContractAbi, TFunctionName>, ReadContractErrorType>>;
-  } = useReadContract({
+  const readContractHookRes = useReadContract({
     chainId: selectedNetwork.id,
     functionName,
     address: deployedContract?.address,
@@ -56,7 +51,12 @@ export const useScaffoldReadContract = <
       enabled: !Array.isArray(args) || !args.some(arg => arg === undefined),
       ...queryOptions,
     },
-  });
+  }) as Omit<ReturnType<typeof useReadContract>, "data" | "refetch"> & {
+    data: AbiFunctionReturnType<ContractAbi, TFunctionName> | undefined;
+    refetch: (
+      options?: RefetchOptions | undefined,
+    ) => Promise<QueryObserverResult<AbiFunctionReturnType<ContractAbi, TFunctionName>, ReadContractErrorType>>;
+  };
 
   const queryClient = useQueryClient();
 
