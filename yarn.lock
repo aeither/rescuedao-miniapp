@@ -5325,6 +5325,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ~8.27.0
     "@typescript-eslint/parser": ~8.27.0
     chai: ~4.5.0
+    cofhejs: ^0.3.1
     dotenv: ~16.4.5
     envfile: ~7.1.0
     eslint: ~9.23.0
@@ -6795,6 +6796,15 @@ __metadata:
   version: 12.20.55
   resolution: "@types/node@npm:12.20.55"
   checksum: e4f86785f4092706e0d3b0edff8dca5a13b45627e4b36700acd8dfe6ad53db71928c8dee914d4276c7fd3b6ccd829aa919811c9eb708a2c8e4c6eb3701178c37
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.0.0":
+  version: 20.19.24
+  resolution: "@types/node@npm:20.19.24"
+  dependencies:
+    undici-types: ~6.21.0
+  checksum: d532a28d454dfadc7b3af7f39d087f7d9416d2e0cdd4b47c3e00fc303177280a66bd15a86078a9957260a47b1d2bad5ac35096aeb316e56bc0318c904f214cc3
   languageName: node
   linkType: hard
 
@@ -10066,6 +10076,24 @@ __metadata:
   version: 10.1.1
   resolution: "code-block-writer@npm:10.1.1"
   checksum: e048037acbcbda19fca62a3a63e4a64226ea6b5dc0fad7632d34a88c1165b29a357e5e19f0497811e9911472e824ab85f68176f40e439da87e051908956eb47c
+  languageName: node
+  linkType: hard
+
+"cofhejs@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "cofhejs@npm:0.3.1"
+  dependencies:
+    "@types/node": ^20.0.0
+    idb-keyval: ^6.2.1
+    immer: ^10.1.1
+    node-tfhe: 0.11.1
+    tfhe: 0.11.1
+    tweetnacl: ^1.0.3
+    tweetnacl-util: ^0.15.1
+    type-fest: ^4.26.1
+    zod: ^3.23.8
+    zustand: ^5.0.1
+  checksum: 6c2d9617281a6deef6a668c92058b143909202cd1d5ab16c6537fbb3882219764f897a0d5d77eef321c0f5740ea6c13236938497ce7b8d3c4b9699c0d66d2e1d
   languageName: node
   linkType: hard
 
@@ -22119,7 +22147,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.22.0, zod@npm:^3.24.4, zod@npm:^3.25.0, zod@npm:^3.25.1":
+"zod@npm:^3.22.0, zod@npm:^3.23.8, zod@npm:^3.24.4, zod@npm:^3.25.0, zod@npm:^3.25.1":
   version: 3.25.76
   resolution: "zod@npm:3.25.76"
   checksum: c9a403a62b329188a5f6bd24d5d935d2bba345f7ab8151d1baa1505b5da9f227fb139354b043711490c798e91f3df75991395e40142e6510a4b16409f302b849

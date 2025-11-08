@@ -15,6 +15,12 @@ import generateTsAbis from "./scripts/generateTsAbis";
 import "@nomicfoundation/hardhat-toolbox";
 import "@cofhe/hardhat-plugin";
 
+// Import custom tasks
+import "./tasks/deploy-nft";
+import "./tasks/mint-cats";
+import "./tasks/list-cats";
+import "./tasks/transfer-cat";
+
 // If not set, it uses ours Alchemy's default API key.
 // You can get your own at https://dashboard.alchemyapi.io
 const providerApiKey = process.env.ALCHEMY_API_KEY || "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";

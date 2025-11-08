@@ -107,7 +107,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     SimpleConfidentialNFT: {
-      address: "0x96bfD331Cf0d1af7aCD2f6f52919408233Aa2a42",
+      address: "0xF1D5Ff863625F8c20AD67D4dE1F6D008FDa5FBCC",
       abi: [
         {
           inputs: [
