@@ -1,3 +1,10 @@
+## RescueDAO
+
+## Architecture
+
+<img width="1526" height="838" alt="CleanShot 2025-11-08 at 07 10 13@2x" src="https://github.com/user-attachments/assets/003868cd-dfc4-4a35-bbe1-afe31247088c" />
+
+
 # 🏗 COFHE Scaffold-ETH 2
 
 Scaffold-ETH 2 (Now With CoFHE)
