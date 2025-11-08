@@ -102,6 +102,12 @@ const Home: NextPage = () => {
                   <p className="text-sm opacity-70">Test gasless transactions with Base Account</p>
                 </div>
               </Link>
+              <Link href="/donations" className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                <div className="card-body">
+                  <h3 className="card-title text-lg">💝 Donations</h3>
+                  <p className="text-sm opacity-70">Send cross-chain donations and earn Impact Badges via CCIP</p>
+                </div>
+              </Link>
               <button
                 onClick={handleShareApp}
                 className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow text-left"
