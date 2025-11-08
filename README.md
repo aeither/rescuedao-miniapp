@@ -4,6 +4,10 @@
 
 <img width="1526" height="838" alt="CleanShot 2025-11-08 at 07 10 13@2x" src="https://github.com/user-attachments/assets/003868cd-dfc4-4a35-bbe1-afe31247088c" />
 
+Chainlink CCIP
+
+https://ccip.chain.link/#/side-drawer/msg/0x3af5702c69faa8672da0025ccda51d456f8618876c26ccc05b97a1d1c7997228
+
 
 # 🏗 COFHE Scaffold-ETH 2
 
