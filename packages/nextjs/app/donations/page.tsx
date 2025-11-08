@@ -98,16 +98,16 @@ const erc20Abi = [
   },
 ] as const;
 
-// Contract addresses - Ethereum Sepolia (source) and Arbitrum Sepolia (destination)
+// Contract addresses - Base Sepolia (source) and Ethereum Sepolia (destination)
 const DONATION_SENDER_ADDRESS = "0x05455067484e775E494AEEcAb6C6Ad9a6A9A1B44";
 const DONATION_RECEIVER_ADDRESS = "0xa7861f0F89c3Fc61Eaf7343720c7958284DeFF77";
 const BADGE_NFT_ADDRESS = "0x10Fe174685FbEbFb96d263B3A3282f19e5469d7f";
 const TREASURY_ADDRESS = "0x0dba585a86bb828708b14d2f83784564ae03a5d0";
 
 // CCIP Chain Selectors
-const ARBITRUM_SEPOLIA_CHAIN_SELECTOR = "3478487238524512106"; // Arbitrum Sepolia
-// CCIP-BnM token on Ethereum Sepolia (example token for donations)
-const CCIP_BNM_TOKEN = "0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05";
+const ETHEREUM_SEPOLIA_CHAIN_SELECTOR = "16015286601757825753"; // Ethereum Sepolia
+// CCIP-BnM token on Base Sepolia (example token for donations)
+const CCIP_BNM_TOKEN = "0x88A2d74F47a237a62e7A51cdDa67270CE381555e";
 
 interface Badge {
   tokenId: number;
@@ -217,7 +217,7 @@ const Donations: NextPage = () => {
       abi: donationSenderAbi,
       functionName: "sendDonation",
       args: [
-        BigInt(ARBITRUM_SEPOLIA_CHAIN_SELECTOR),
+        BigInt(ETHEREUM_SEPOLIA_CHAIN_SELECTOR),
         DONATION_RECEIVER_ADDRESS as `0x${string}`,
         CCIP_BNM_TOKEN as `0x${string}`,
         amountInWei,
@@ -284,8 +284,8 @@ const Donations: NextPage = () => {
                       />
                     </svg>
                     <div className="text-sm">
-                      <p>Source: Ethereum Sepolia</p>
-                      <p>Destination: Arbitrum Sepolia</p>
+                      <p>Source: Base Sepolia</p>
+                      <p>Destination: Ethereum Sepolia</p>
                     </div>
                   </div>
 
@@ -404,7 +404,7 @@ const Donations: NextPage = () => {
                           View on CCIP Explorer
                         </a>
                         <span className="text-xs">
-                          Your Impact Badge NFT will be minted on Arbitrum Sepolia in 1-2 minutes
+                          Your Impact Badge NFT will be minted on Ethereum Sepolia in 1-2 minutes
                         </span>
                       </div>
                     </div>
@@ -420,27 +420,27 @@ const Donations: NextPage = () => {
 
                 <div className="space-y-4">
                   <div>
-                    <p className="font-semibold mb-1">DonationSender (Ethereum Sepolia)</p>
+                    <p className="font-semibold mb-1">DonationSender (Base Sepolia)</p>
                     <Address address={DONATION_SENDER_ADDRESS} />
                   </div>
 
                   <div>
-                    <p className="font-semibold mb-1">DonationReceiver (Arbitrum Sepolia)</p>
+                    <p className="font-semibold mb-1">DonationReceiver (Ethereum Sepolia)</p>
                     <Address address={DONATION_RECEIVER_ADDRESS} />
                   </div>
 
                   <div>
-                    <p className="font-semibold mb-1">Impact Badge NFT (Arbitrum Sepolia)</p>
+                    <p className="font-semibold mb-1">Impact Badge NFT (Ethereum Sepolia)</p>
                     <Address address={BADGE_NFT_ADDRESS} />
                   </div>
 
                   <div>
-                    <p className="font-semibold mb-1">Treasury (Arbitrum Sepolia)</p>
+                    <p className="font-semibold mb-1">Treasury (Ethereum Sepolia)</p>
                     <Address address={TREASURY_ADDRESS} />
                   </div>
 
                   <div>
-                    <p className="font-semibold mb-1">CCIP-BnM Token (Ethereum Sepolia)</p>
+                    <p className="font-semibold mb-1">CCIP-BnM Token (Base Sepolia)</p>
                     <Address address={CCIP_BNM_TOKEN} />
                   </div>
 
@@ -530,9 +530,9 @@ const Donations: NextPage = () => {
             <div>
               <h3 className="font-semibold mb-2">Donation Flow:</h3>
               <ol className="space-y-2 list-decimal list-inside text-sm">
-                <li>Approve CCIP-BnM tokens on Ethereum Sepolia</li>
+                <li>Approve CCIP-BnM tokens on Base Sepolia</li>
                 <li>Send donation with campaign ID via CCIP</li>
-                <li>CCIP transfers tokens to Arbitrum Sepolia</li>
+                <li>CCIP transfers tokens to Ethereum Sepolia</li>
                 <li>DonationReceiver forwards tokens to treasury</li>
                 <li>Impact Badge NFT is minted to your address</li>
                 <li>Track your donation on CCIP Explorer</li>
@@ -556,14 +556,14 @@ const Donations: NextPage = () => {
           <h3 className="text-lg font-bold mb-3">Setup Guide</h3>
           <ol className="space-y-2 list-decimal list-inside text-sm">
             <li>
-              Get testnet ETH for Ethereum Sepolia from{" "}
+              Get testnet ETH for Base Sepolia from{" "}
               <a
-                href="https://sepoliafaucet.com"
+                href="https://www.alchemy.com/faucets/base-sepolia"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link link-primary"
               >
-                Sepolia Faucet
+                Base Sepolia Faucet
               </a>
             </li>
             <li>
@@ -577,10 +577,10 @@ const Donations: NextPage = () => {
                 Chainlink Faucet
               </a>
             </li>
-            <li>Connect your wallet to Ethereum Sepolia network</li>
+            <li>Connect your wallet to Base Sepolia network</li>
             <li>Approve tokens and send your first cross-chain donation</li>
             <li>Wait 1-2 minutes for CCIP to process the transaction</li>
-            <li>Switch to Arbitrum Sepolia to view your Impact Badge NFT</li>
+            <li>Switch to Ethereum Sepolia to view your Impact Badge NFT</li>
           </ol>
         </div>
       </div>
