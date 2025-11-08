@@ -11,6 +11,8 @@ import {
 import type { CreateConnectorFn } from "@wagmi/core";
 import { rainbowkitBurnerWallet } from "burner-connector";
 import * as chains from "viem/chains";
+import { baseSepolia } from "viem/chains";
+import { baseAccount } from "wagmi/connectors";
 import scaffoldConfig from "~~/scaffold.config";
 
 const { onlyLocalBurnerWallet, targetNetworks } = scaffoldConfig;
@@ -33,6 +35,16 @@ const wallets = [
  */
 export const wagmiConnectors: CreateConnectorFn[] = [
   miniAppConnector(),
+  baseAccount({
+    appName: "RescueDAO",
+    subAccounts: {
+      creation: "on-connect",
+      defaultAccount: "sub",
+    },
+    paymasterUrls: {
+      [baseSepolia.id]: process.env.NEXT_PUBLIC_PAYMASTER_SERVICE_URL || "",
+    },
+  }),
   ...connectorsForWallets(
     [
       {
