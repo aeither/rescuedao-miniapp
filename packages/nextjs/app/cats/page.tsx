@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useComposeCast, useMiniKit } from "@coinbase/onchainkit/minikit";
 import type { NextPage } from "next";
 import { formatUnits, parseUnits } from "viem";
@@ -500,11 +501,13 @@ const CatCard = ({ nft, onDonate, onShare, isConnected, isDonating, isApproving,
             </div>
           ) : metadata?.image && !imageError ? (
             <div className="relative h-64 overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
-              <img
+              <Image
                 src={metadata.image}
                 alt={metadata.name || nft.catName}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
                 onError={() => setImageError(true)}
+                unoptimized
               />
               <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
                 <span className="text-white text-sm font-bold">NFT #{nft.tokenId.toString()}</span>
