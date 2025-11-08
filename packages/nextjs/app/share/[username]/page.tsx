@@ -1,15 +1,54 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
+import { Metadata } from "next";
 import type { NextPage } from "next";
+import { minikitConfig } from "~~/minikit.config";
 
 interface SharePageProps {
   params: Promise<{ username: string }>;
 }
 
-const SharePage: NextPage<SharePageProps> = ({ params }) => {
-  const { username } = use(params);
+export async function generateMetadata({ params }: SharePageProps): Promise<Metadata> {
+  try {
+    const { username } = await params;
+
+    return {
+      title: minikitConfig.miniapp.name,
+      description: minikitConfig.miniapp.description,
+      other: {
+        "fc:miniapp": JSON.stringify({
+          version: minikitConfig.miniapp.version,
+          imageUrl: `${minikitConfig.miniapp.homeUrl}/api/og/${username}`,
+          button: {
+            title: `Launch ${minikitConfig.miniapp.name}`,
+            action: {
+              name: `Launch ${minikitConfig.miniapp.name}`,
+              type: "launch_frame",
+              url: `${minikitConfig.miniapp.homeUrl}`,
+            },
+          },
+        }),
+      },
+    };
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : "Unknown error";
+    console.log(
+      JSON.stringify({
+        timestamp: new Date().toISOString(),
+        level: "error",
+        message: "Failed to generate metadata",
+        error: errorMessage,
+      }),
+    );
+
+    return {
+      title: minikitConfig.miniapp.name,
+      description: minikitConfig.miniapp.description,
+    };
+  }
+}
+
+const SharePage: NextPage<SharePageProps> = async ({ params }) => {
+  const { username } = await params;
 
   return (
     <div className="flex items-center flex-col grow pt-10 px-4">

@@ -3,14 +3,16 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { FHECounterComponent } from "./FHECounterComponent";
-import { useMiniKit } from "@coinbase/onchainkit/minikit";
+import { useComposeCast, useMiniKit } from "@coinbase/onchainkit/minikit";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { ConnectWalletButton } from "~~/components/ConnectWalletButton";
 import { Address } from "~~/components/scaffold-eth";
+import { minikitConfig } from "~~/minikit.config";
 
 const Home: NextPage = () => {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
+  const { composeCast } = useComposeCast();
   const { address: connectedAddress, isConnected } = useAccount();
 
   // Initialize the miniapp
@@ -19,6 +21,14 @@ const Home: NextPage = () => {
       setFrameReady();
     }
   }, [setFrameReady, isFrameReady]);
+
+  const handleShareApp = () => {
+    const userName = context?.user?.username || "demo";
+    composeCast({
+      text: `Check out ${minikitConfig.miniapp.name}! 🚀`,
+      embeds: [`${minikitConfig.miniapp.homeUrl}/share/${userName}`],
+    });
+  };
 
   return (
     <>
@@ -86,15 +96,15 @@ const Home: NextPage = () => {
                   <p className="text-sm opacity-70">Enable notifications and test notification features</p>
                 </div>
               </Link>
-              <Link
-                href={context?.user?.username ? `/share/${context.user.username}` : "/share/demo"}
-                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+              <button
+                onClick={handleShareApp}
+                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow text-left"
               >
                 <div className="card-body">
                   <h3 className="card-title text-lg">🚀 Share</h3>
                   <p className="text-sm opacity-70">Share this Mini App with your Farcaster network</p>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
